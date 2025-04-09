@@ -6,10 +6,26 @@ function ContactsList({contacts}) {
         <>
         <div>
         <h3>Contact List</h3>
-        <ul>
+        {contacts.length ? (<ul>
           {contacts.map(contact =>
-          <li key={contact.id}> {contact.name} </li> )}
-        </ul>
+          <li key={contact.id}>
+            <p>
+            {contact.name} {contact.lastName}
+            </p>
+
+            <p>
+              <span>📬</span> {contact.email}
+            </p>
+
+            <p>
+              <span>📞</span>{contact.phone}
+            </p>
+
+            <button>🗑</button>
+            
+          </li> )}
+        </ul>) :<p>No Caontacts Yet!</p>}
+        
         </div>
         </>
     )
