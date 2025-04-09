@@ -2,12 +2,6 @@ import { useEffect, useState } from "react";
 import ContactsList from "./ContactsList";
 
 
-
-
-
-
-
-
 function Contacts(params) {
     const [contacts,setContacts]=useState([]);
     const [contact,setContact]=useState({
@@ -16,6 +10,9 @@ function Contacts(params) {
         email:"",
         phone:""
     })
+
+    const [errorMessage, setErrorMessage]=useState('');
+
     function changeHandler(event) {
         const value=event.target.value;
         const name=event.target.name;
@@ -26,9 +23,12 @@ function Contacts(params) {
         const { name, lastName, email, phone } = contact;
 
      if (!name || !lastName || !email || !phone) {
-         alert("Please fill in all fields before adding a contact.");
-        return;
-         }
+        setErrorMessage("⚠️ Invalid! Please fill in all inputs");
+        };
+        setTimeout(() => {
+            setErrorMessage("");
+            return;
+        }, 1000);
 
         setContacts((prevContacts) => [...prevContacts, contact]);
         setContact({
@@ -76,6 +76,7 @@ function Contacts(params) {
                 <button onClick={addHandler}>Add contact</button>
             </div>
             <ContactsList contacts={contacts}/>
+            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         </div>
         </>
     )
