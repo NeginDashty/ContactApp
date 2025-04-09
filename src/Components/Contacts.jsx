@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import ContactsList from "./ContactsList";
 import inputs from "../Consts/inputs.js";
+import { v4 as uuidv4, v4 } from 'uuid';
+
 
 function Contacts() {
   const [contacts, setContacts] = useState([]);
   const [contact, setContact] = useState({
-    name: "",
+    id:"",
+    name: "", 
     lastName: "",
     email: "",
     phone: ""
@@ -28,8 +31,9 @@ function Contacts() {
       }, 1000);
       return; 
     }
-
-    setContacts((prevContacts) => [...prevContacts, contact]);
+   
+    const newContact={...contact, id:v4()}
+    setContacts((prevContacts) => [...prevContacts, newContact]);
     console.log(contacts,'contactsss');
     console.log(contact,'Contacttt')
     setContact({

@@ -1,9 +1,15 @@
 import React from "react";
-function ContactsList(props) {
+import Contacts from "./Contacts";
+
+function ContactsList({contacts}) {
     return(
         <>
         <div>
-        test
+        <h3>Contact List</h3>
+        <ul>
+          {contacts.map(contact =>
+          <li key={contact.id}> {contact.name} </li> )}
+        </ul>
         </div>
         </>
     )
